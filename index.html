@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ForBabi 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+* {
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+}
+
+body { 
+  margin: 0; padding: 0; font-family: 'Comic Sans MS', cursive, sans-serif; 
+  background: #000; color: #fff; text-align: center; overflow-x: hidden; position: relative; height: 100vh; 
+  touch-action: manipulation;
+}
+
+h1 { font-size: 8vw; margin-top: 5vh; color: #ff69b4; text-shadow: 2px 2px #ff1493; }
+h2 { font-size: 6vw; margin-top: 2vh; color: #ff69b4; text-shadow: 2px 2px #ff1493; }
+#emoji { font-size: 20vw; margin-top: 5vh; display: block; cursor: pointer; }
+
+#buttonContainer { margin-top: 5vh; position: relative; height: 15vh; }
+.btn { 
+  font-size: 5vw; padding: 1vh 5vw; cursor: pointer; border: none; border-radius: 12px; 
+  color: #fff; background: linear-gradient(to right, #ff69b4, #ff1493); margin: 10px; 
+  transition: all 0.2s ease; position: absolute; top: 0; 
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+  will-change: transform, opacity;
+}
+.btn:hover { transform: scale(1.2) rotate(-2deg); box-shadow: 4px 4px 15px rgba(255,105,180,0.5); }
+
+#yesBtn { left: 5vw; } 
+#noBtn { right: 5vw; }
+
+#footer { font-size: 4vw; margin-top: 5vh; text-shadow: 1px 1px #ff1493; }
+
+.heart { 
+  position: absolute; font-size: 5vw; animation: float 5s linear infinite; 
+  pointer-events: none; will-change: transform, opacity;
+}
+@keyframes float { 
+  0% { transform: translate3d(0,0,0) rotate(0deg); opacity: 1; } 
+  100% { transform: translate3d(0,-120vh,0) rotate(360deg); opacity: 0; } 
+}
+
+.qoobee-video {
+  position: fixed; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40vw; max-width: 300px;
+  pointer-events: none;
+  z-index: 9999; opacity: 1;
+  transition: opacity 0.8s ease;
+  will-change: transform, opacity;
+}
+
+@keyframes confettiFall { 
+  to { transform: translateY(120vh) rotate(720deg); opacity: 0; } 
+}
+
+.yes-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  background: #000;
+}
+.cute_message { font-size: 6vw; color: #ff69b4; margin-bottom: 2vh; text-shadow: 2px 2px #ff1493; }
+
+#loveLetterContent {
+  background: #111; color: #ffb6c1; padding: 5vw 6vw; border-radius: 30px;
+  text-align: center;
+  box-shadow: 0 0 3vw rgba(255,105,180,0.3); max-width: 90vw; margin-top: 3vh;
+}
+#loveLetterContent h1 { font-size: 7vw; color: #ff69b4; margin-bottom: 3vh; }
+#loveLetterContent p { font-size: 4.5vw; line-height: 1.6; margin: 2vh 0; }
+#loveLetterContent footer { font-size: 4vw; color: #ff1493; margin-top: 3vh; }
+</style>
+</head>
+<body>
+
+<h1>Hi Baby Babi 💖</h1>
+<h2>Will You Be My Valentine Forever? 🥺</h2>
+<div id="emoji">🥺</div>
+<div id="buttonContainer">
+  <button id="yesBtn" class="btn">Yes</button>
+  <button id="noBtn" class="btn">No</button>
+</div>
+<div id="footer">By Your Dada</div>
+
+<script>
+const yesBtn=document.getElementById("yesBtn");
+const noBtn=document.getElementById("noBtn");
+
+const messages=["Are you sure honeybunch?","Really sure??","Sumbong taka mirai","Are you positive?",
+"Babiii please...","Just think about it!","If you say no, I will be really sad...",
+"I will be very sad...","I will be very very very sad...","Ok fine, I will stop asking...",
+"Just kidding, say yes please! ❤️"];
+
+let messageIndex=0, fastMode=false, noScale=1;
+const qoubeeVideos=["qoubee.mp4","qoubee2.mp4","qoubee3.mp4","qoubee4.mp4"];
+let qoubeeIndex=0;
+
+function showQoobee(){
+  const video=document.createElement("video");
+  video.src=qoubeeVideos[qoubeeIndex];
+  video.className="qoobee-video";
+  video.autoplay=true; video.muted=true; video.playsInline=true;
+  document.body.appendChild(video);
+  qoubeeIndex=(qoubeeIndex+1)%qoubeeVideos.length;
+  setTimeout(()=>video.style.opacity="0",1000);
+  setTimeout(()=>video.remove(),1200);
+}
+
+noBtn.addEventListener("click",()=>{
+  if(!fastMode){
+    noBtn.textContent=messages[messageIndex++];
+    if(messageIndex>=messages.length){ fastMode=true; noBtn.textContent="No"; }
+    const size=parseFloat(getComputedStyle(yesBtn).fontSize);
+    yesBtn.style.fontSize=`${size*1.2}px`;
+  } else {
+    noScale=Math.max(0,noScale-0.05);
+    noBtn.style.transform=`translate(${(Math.random()-0.5)*60}vw, ${(Math.random()-0.5)*30}vh) scale(${noScale})`;
+    if(noScale===0) noBtn.style.pointerEvents="none";
+  }
+  showQoobee();
+});
+
+function createFloatingHeart(){
+  const h=document.createElement("div");
+  h.className="heart"; h.textContent="💖";
+  h.style.left=Math.random()*100+"vw";
+  h.style.fontSize=(5+Math.random()*10)+"vw";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),6000);
+}
+setInterval(createFloatingHeart,650);
+
+function launchConfetti(){
+  for(let i=0;i<180;i++){
+    const c=document.createElement("div");
+    c.textContent="🎉";
+    c.style.position="fixed";
+    c.style.left=Math.random()*100+"vw";
+    c.style.top="-5vh";
+    c.style.fontSize=(2+Math.random()*3)+"vw";
+    c.style.animation=`confettiFall ${2+Math.random()*2}s linear`;
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),4000);
+  }
+}
+
+yesBtn.addEventListener("click",()=>{
+  launchConfetti();
+  document.body.innerHTML=`
+    <div class="yes-page">
+      <h1>Knew you would say yes!</h1>
+      <div id="emoji">🥺</div>
+      <div class="cute_message">Thankyouuu Baby Babi 💖 I Love Youuuu So Much 🥺😘</div>
+      <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExMmo3c3l5ODh3ZGN6NHhhaDE2Mjg1ZjkwOXczdDFxbWM3dTBtaW9zaiZlcD12MV9pbnRlcm5hbF9naWQmY3Q9cw/9XY4f3FgFTT4QlaYqa/giphy.gif" style="width:80vw;max-width:500px">
+      <audio autoplay loop><source src="cupcake.mp3" type="audio/mpeg"></audio>
+    </div>
+  `;
+
+  document.getElementById("emoji").onclick=()=>{
+    const mini=document.createElement("video");
+    mini.src="Mirai.mp4";
+    mini.autoplay=true;
+    mini.muted=true;
+    mini.playsInline=true;
+    mini.style.cssText="
+      position:fixed;
+      top:2vh;
+      right:2vw;
+      width:30vw;
+      max-width:220px;
+      border-radius:16px;
+      box-shadow:0 0 3vw rgba(255,105,180,.6);
+      z-index:9999;
+      cursor:pointer;
+    ";
+    document.body.appendChild(mini);
+
+    mini.onclick=()=>{
+      document.body.innerHTML=`
+        <div style="display:flex;flex-direction:column;align-items:center;background:#000;min-height:100vh;">
+          <video src="Mirai.mp4" autoplay muted loop playsinline style="width:35vw;max-width:300px;border-radius:12px;margin-top:5vh;box-shadow:0 0 2vw rgba(255,105,180,.5);"></video>
+          <audio autoplay loop><source src="cupcake.mp3" type="audio/mpeg"></audio>
+          <div id="loveLetterContent">
+            <h1>Happy 3rd Anniversary Baby Babi 💖</h1>
+            <p>Three wonderful years with you, full of laughter, love, and endless memories.
+            Every moment with you melts my heart a little more. Thank you for being my
+ everything.</p>
+            <footer>Loving you always,<br>Your Dada 💕</footer>
+          </div>
+        </div>
+      `;
+    };
+  };
+});
+</script>
+</body>
+</html>
