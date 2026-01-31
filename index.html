@@ -4,39 +4,38 @@
 <meta charset="UTF-8">
 <title>ForBabi 💖</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 <style>
 body { 
-  margin: 0; padding: 0; font-family: 'Arial Rounded MT Bold', Arial, sans-serif; 
-  background: #000; color: #f0e6d2; text-align: center; overflow-x: hidden; position: relative; height: 100vh; 
+  margin: 0; padding: 0; font-family: 'Comic Sans MS', cursive, sans-serif; 
+  background: #000; color: #fff; text-align: center; overflow-x: hidden; position: relative; height: 100vh; 
 }
 
 /* Headings and emoji */
-h1 { font-size: 10vw; margin-top: 5vh; color: #f0e6d2; text-shadow: 2px 2px #8c7b6b; }
-h2 { font-size: 7vw; margin-top: 2vh; color: #f0e6d2; text-shadow: 2px 2px #8c7b6b; }
-#emoji { font-size: 25vw; margin-top: 5vh; display: block; cursor: pointer; }
+h1 { font-size: 8vw; margin-top: 5vh; color: #ff69b4; text-shadow: 2px 2px #ff1493; }
+h2 { font-size: 6vw; margin-top: 2vh; color: #ff69b4; text-shadow: 2px 2px #ff1493; }
+#emoji { font-size: 20vw; margin-top: 5vh; display: block; cursor: pointer; }
 
 /* Buttons */
 #buttonContainer { margin-top: 5vh; position: relative; height: 15vh; }
-.btn { font-size: 6vw; padding: 1.5vh 6vw; cursor: pointer; border: none; border-radius: 15px; 
-  color: #fff; background: linear-gradient(to right, #8c7b6b, #cbbf9f); margin: 10px; 
-  transition: all 0.2s ease; position: absolute; top: 0; box-shadow: 2px 2px 10px rgba(0,0,0,0.4); }
-.btn:hover { transform: scale(1.2) rotate(-2deg); box-shadow: 4px 4px 15px rgba(0,0,0,0.6); }
+.btn { font-size: 5vw; padding: 1vh 5vw; cursor: pointer; border: none; border-radius: 12px; 
+  color: #fff; background: linear-gradient(to right, #ff69b4, #ff1493); margin: 10px; 
+  transition: all 0.2s ease; position: absolute; top: 0; box-shadow: 2px 2px 10px rgba(0,0,0,0.3); }
+.btn:hover { transform: scale(1.2) rotate(-2deg); box-shadow: 4px 4px 15px rgba(255,105,180,0.5); }
 
 #yesBtn { left: 5vw; } 
 #noBtn { right: 5vw; }
 
-#footer { font-size: 5vw; margin-top: 5vh; color: #f0e6d2; text-shadow: 1px 1px #8c7b6b; }
+#footer { font-size: 4vw; margin-top: 5vh; text-shadow: 1px 1px #ff1493; }
 
 /* Floating hearts */
-.heart { position: absolute; font-size: 6vw; animation: float 5s linear infinite; pointer-events: none; }
+.heart { position: absolute; font-size: 5vw; animation: float 5s linear infinite; pointer-events: none; }
 @keyframes float { 0% { transform: translateY(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; } }
 
 /* Qoobee videos */
 .qoobee-video {
   position: fixed; top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  width: 45vw; max-width: 350px;
+  width: 40vw; max-width: 300px;
   pointer-events: none;
   z-index: 9999; opacity: 1;
   transition: opacity 0.8s ease;
@@ -45,58 +44,55 @@ h2 { font-size: 7vw; margin-top: 2vh; color: #f0e6d2; text-shadow: 2px 2px #8c7b
 /* Confetti animation */
 @keyframes confettiFall { to { transform: translateY(120vh) rotate(720deg); opacity: 0; } }
 
-/* Pages */
-.page { display: none; height: 100vh; width: 100%; text-align: center; }
-.active { display: flex; flex-direction: column; justify-content: center; align-items: center; }
-
-/* YES page styling */
-#yesPage .cute_message { font-size: 7vw; color: #f0e6d2; margin-bottom: 2vh; text-shadow: 2px 2px #8c7b6b; font-family: 'Pacifico', cursive; }
-
-/* Small Mirai overlay */
-#miraiOverlay {
-  position: fixed; bottom: 10%; right: 5%;
-  width: 20vw; max-width: 180px; border-radius: 10px;
-  cursor: pointer; z-index: 1000;
-  box-shadow: 0 0 2vw rgba(240,230,210,0.5);
-  display: none;
+/* YES page */
+.yes-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  background: #000;
 }
+.cute_message { font-size: 6vw; color: #ff69b4; margin-bottom: 2vh; text-shadow: 2px 2px #ff1493; }
 
 /* Easter egg page */
 #easterEggPage {
-  background: linear-gradient(to bottom right, #000000, #1a001a);
-  flex-direction: column; justify-content: flex-start; align-items: center;
-  text-align: center; overflow: hidden; z-index: 10000;
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #000;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+  z-index: 10000;
 }
-#easterEggPage video { width: 40vw; max-width: 400px; border-radius: 12px; margin-top: 5vh; box-shadow: 0 0 2vw rgba(240,230,210,0.5); }
+#easterEggPage video { width: 35vw; max-width: 300px; border-radius: 12px; margin-top: 5vh; box-shadow: 0 0 2vw rgba(255,105,180,0.5); }
 #loveLetterContent {
-  background: #111; color: #f0e6d2; padding: 5vw 6vw; border-radius: 30px;
-  text-align: center; font-family: 'Pacifico', cursive;
-  box-shadow: 0 0 3vw rgba(240,230,210,0.4); max-width: 90vw; margin-top: 3vh;
+  background: #111; color: #ffb6c1; padding: 5vw 6vw; border-radius: 30px;
+  text-align: center; font-family: 'Comic Sans MS', cursive, sans-serif;
+  box-shadow: 0 0 3vw rgba(255,105,180,0.3); max-width: 90vw; margin-top: 3vh;
 }
-#loveLetterContent h1 { font-size: 8vw; color: #f0e6d2; margin-bottom: 3vh; }
-#loveLetterContent p { font-size: 5vw; line-height: 1.6; margin: 2vh 0; }
-#loveLetterContent footer { font-size: 4.5vw; color: #cbbf9f; margin-top: 3vh; }
+#loveLetterContent h1 { font-size: 7vw; color: #ff69b4; margin-bottom: 3vh; }
+#loveLetterContent p { font-size: 4.5vw; line-height: 1.6; margin: 2vh 0; }
+#loveLetterContent footer { font-size: 4vw; color: #ff1493; margin-top: 3vh; }
 </style>
 </head>
 <body>
 
-<!-- MAIN PAGE / YES PAGE -->
-<div id="mainPage" class="page active">
-  <h1>Hi Baby Babi 💖</h1>
-  <h2>Will You Be My Valentine Forever? 🥺</h2>
-  <div id="emoji">🥺</div>
-  <div id="buttonContainer">
-    <button id="yesBtn" class="btn yes-button">Yes</button>
-    <button id="noBtn" class="btn no-button">No</button>
-  </div>
-  <div id="footer">By Your Dada</div>
+<h1>Hi Baby Babi 💖</h1>
+<h2>Will You Be My Valentine Forever? 🥺</h2>
+<div id="emoji">🥺</div>
+<div id="buttonContainer">
+  <button id="yesBtn" class="btn yes-button">Yes</button>
+  <button id="noBtn" class="btn no-button">No</button>
 </div>
+<div id="footer">By Your Dada</div>
 
-<!-- Small Mirai overlay -->
-<video id="miraiOverlay" src="Mirai.mp4" muted loop autoplay playsinline></video>
-
-<!-- Easter egg page -->
-<div id="easterEggPage" class="page">
+<!-- Easter egg page (hidden) -->
+<div id="easterEggPage">
   <video id="miraiVideo" src="Mirai.mp4" autoplay muted loop playsinline></video>
   <audio id="cupcakeAudioModal" autoplay loop>
     <source src="cupcake.mp3" type="audio/mpeg">
@@ -104,24 +100,17 @@ h2 { font-size: 7vw; margin-top: 2vh; color: #f0e6d2; text-shadow: 2px 2px #8c7b
   <div id="loveLetterContent">
     <h1>Happy 3rd Anniversary Baby Babi 💖</h1>
     <p>
-      Three amazing years filled with love, laughter, and endless memories.
-      You are my heart, my joy, and my everything. I cherish every moment with you.
+      Three wonderful years with you, full of laughter, love, and endless memories.
+      Every moment with you melts my heart a little more. Thank you for being my everything.
     </p>
     <footer>Loving you always,<br>Your Dada 💕</footer>
   </div>
 </div>
 
-<!-- YES page audio -->
-<audio id="cupcakeAudioYes" autoplay loop>
-  <source src="cupcake.mp3" type="audio/mpeg">
-</audio>
-
 <script>
 const yesBtn=document.getElementById("yesBtn");
 const noBtn=document.getElementById("noBtn");
 const emoji=document.getElementById("emoji");
-const miraiOverlay=document.getElementById("miraiOverlay");
-const mainPage=document.getElementById("mainPage");
 const easterEggPage=document.getElementById("easterEggPage");
 
 const messages=["Are you sure honeybunch?","Really sure??","Sumbong taka mirai","Are you positive?",
@@ -133,7 +122,6 @@ let messageIndex=0, fastMode=false, noScale=1, minNoScale=0;
 const qoubeeVideos=["qoubee.mp4","qoubee2.mp4","qoubee3.mp4","qoubee4.mp4"];
 let qoubeeIndex=0;
 
-// Qoobee video function
 function showQoobee(){
   const video=document.createElement("video");
   video.src=qoubeeVideos[qoubeeIndex];
@@ -145,7 +133,6 @@ function showQoobee(){
   setTimeout(()=>video.remove(),1200);
 }
 
-// NO button behavior
 noBtn.addEventListener("click",()=>{
   if(!fastMode){
     noBtn.textContent=messages[messageIndex];
@@ -163,18 +150,16 @@ noBtn.addEventListener("click",()=>{
   showQoobee();
 });
 
-// Floating hearts
 function createFloatingHeart(){
   const heart=document.createElement("div");
   heart.classList.add("heart"); heart.textContent="💖";
   heart.style.left=Math.random()*window.innerWidth+"px";
-  heart.style.fontSize=(6+Math.random()*6)+"vw";
+  heart.style.fontSize=(5+Math.random()*10)+"vw";
   document.body.appendChild(heart);
   setTimeout(()=>heart.remove(),6000);
 }
 setInterval(createFloatingHeart,500);
 
-// Confetti on YES
 function launchConfetti(){
   for(let i=0;i<180;i++){
     const c=document.createElement("div"); c.textContent="🎉";
@@ -184,24 +169,30 @@ function launchConfetti(){
     document.body.appendChild(c); setTimeout(()=>c.remove(),4000);
   }
 }
+yesBtn.addEventListener("click",launchConfetti);
 
-// YES click
 yesBtn.addEventListener("click",()=>{
-  launchConfetti();
-  mainPage.classList.remove("active");
-  mainPage.classList.add("active"); // YES page is same, just confetti
-});
+  document.body.innerHTML=`
+    <div class="yes-page">
+      <h1 class="header_text">Knew you would say yes!</h1>
+      <div id="emoji">🥺</div>
+      <div class="cute_message">Thankyouuu Baby Babi 💖 I Love Youuuu So Much 🥺😘</div>
+      <div class="gif_container">
+        <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExMmo3c3l5ODh3ZGN6NHhhaDE2Mjg1ZjkwOXczdDFxbWM3dTBtaW9zaiZlcD12MV9pbnRlcm5hbF9naWQmY3Q9cw/9XY4f3FgFTT4QlaYqa/giphy.gif" style="width:80vw;max-width:500px">
+      </div>
+      <audio id="cupcakeAudio" autoplay loop>
+        <source src="cupcake.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+  `;
 
-// Emoji click → small Mirai overlay
-emoji.addEventListener("click",()=>{
-  miraiOverlay.style.display="block";
-});
-
-// Clicking small Mirai → Easter egg page
-miraiOverlay.addEventListener("click",()=>{
-  mainPage.classList.remove("active");
-  easterEggPage.style.display="flex";
-  miraiOverlay.style.display="none";
+  const yesEmoji=document.getElementById("emoji");
+  yesEmoji.addEventListener("click",()=>{
+    // Show Easter egg page
+    document.body.innerHTML="";
+    easterEggPage.style.display="flex";
+    document.body.appendChild(easterEggPage);
+  });
 });
 </script>
 </body>
